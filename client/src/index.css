@@ -11,3 +11,9 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 }
+
+@layer components {
+  .text-shadow-blue {
+    text-shadow: 0 2px 4px rgba(30, 64, 175, 0.5), 0 3px 8px rgba(30, 64, 175, 0.35);
+  }
+}
