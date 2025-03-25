@@ -58,7 +58,7 @@ export default function WorldMap({
     >
       {isLoading ? (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-map-blue"></div>
         </div>
       ) : (
         <ComposableMap>
@@ -89,7 +89,7 @@ export default function WorldMap({
                       style={{
                         default: {
                           fill: isSelected 
-                            ? "#3b82f6" 
+                            ? "var(--map-blue)" 
                             : isCompared 
                               ? "#10b981"
                               : "#e5e7eb",
@@ -100,7 +100,7 @@ export default function WorldMap({
                           outline: "none",
                         },
                         pressed: {
-                          fill: "#60a5fa",
+                          fill: "var(--map-blue)",
                           outline: "none",
                         },
                       }}

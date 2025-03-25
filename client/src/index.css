@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --map-blue: #1e62d0;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -14,6 +18,14 @@
 
 @layer components {
   .text-shadow-blue {
-    text-shadow: 0 2px 4px rgba(30, 64, 175, 0.5), 0 3px 8px rgba(30, 64, 175, 0.35);
+    text-shadow: 0 2px 4px rgba(30, 98, 208, 0.5), 0 3px 8px rgba(30, 98, 208, 0.35);
+  }
+  
+  .bg-map-blue {
+    background-color: var(--map-blue);
+  }
+  
+  .text-map-blue {
+    color: var(--map-blue);
   }
 }
