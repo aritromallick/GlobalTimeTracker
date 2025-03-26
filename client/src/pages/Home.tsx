@@ -5,6 +5,7 @@ import InfoBanner from "../components/InfoBanner";
 import MapSection from "../components/MapSection";
 import TimeComparisonSection from "../components/TimeComparisonSection";
 import UsageGuide from "../components/UsageGuide";
+import AdBanner from "../components/AdBanner";
 import { useCountries } from "../lib/countryUtils";
 import { useIsMobile } from "../hooks/use-mobile";
 import type { Country } from "../types";
@@ -58,6 +59,16 @@ export default function Home() {
       <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 flex-grow">
         <InfoBanner />
         
+        {/* Top Ad Banner */}
+        <div className="my-4">
+          <AdBanner 
+            slot="1234567890" 
+            format="horizontal" 
+            style={{ minHeight: '90px', width: '100%' }}
+            className="bg-gray-100 rounded shadow-sm" 
+          />
+        </div>
+        
         {/* Mobile navigation tabs */}
         {isMobile && (
           <div className="mb-4 flex border-b border-gray-200">
@@ -102,6 +113,16 @@ export default function Home() {
             comparedCountry={comparedCountry}
             onSelectCountry1={handleSelectCountry1}
             onSelectCountry2={handleSelectCountry2}
+          />
+        </div>
+        
+        {/* Middle Ad Banner */}
+        <div className="my-6">
+          <AdBanner 
+            slot="2345678901" 
+            format="rectangle" 
+            style={{ minHeight: '250px', width: '100%' }}
+            className="bg-gray-100 rounded shadow-sm" 
           />
         </div>
         

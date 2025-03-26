@@ -49,4 +49,14 @@
   .mobile-time-display {
     @apply text-xl font-bold;
   }
+  
+  /* Ad container styles */
+  .ad-container {
+    @apply overflow-hidden relative flex justify-center items-center;
+  }
+  
+  .ad-container::before {
+    content: "Advertisement";
+    @apply absolute top-0 left-0 bg-gray-700 bg-opacity-40 text-white text-opacity-70 text-[10px] px-1 py-0.5 rounded-br;
+  }
 }
