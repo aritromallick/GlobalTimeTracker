@@ -3,7 +3,7 @@ import type { Country } from "../types";
 
 // Hook to fetch all countries
 export function useCountries() {
-  return useQuery({
+  return useQuery<Country[]>({
     queryKey: ["/api/countries"],
     staleTime: Infinity, // Countries data doesn't change frequently
   });
@@ -11,7 +11,7 @@ export function useCountries() {
 
 // Hook to fetch a specific country by code
 export function useCountry(code: string | null) {
-  return useQuery({
+  return useQuery<Country>({
     queryKey: ["/api/countries", code],
     enabled: !!code, // Only fetch when a code is provided
   });

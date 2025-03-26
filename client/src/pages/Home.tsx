@@ -6,17 +6,24 @@ import MapSection from "../components/MapSection";
 import TimeComparisonSection from "../components/TimeComparisonSection";
 import UsageGuide from "../components/UsageGuide";
 import { useCountries } from "../lib/countryUtils";
+import { useIsMobile } from "../hooks/use-mobile";
 import type { Country } from "../types";
 
 export default function Home() {
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const [comparedCountry, setComparedCountry] = useState<Country | null>(null);
+  const [activeSection, setActiveSection] = useState<'map' | 'comparison'>('map');
   
+  const isMobile = useIsMobile();
   const { data: countries = [], isLoading, error } = useCountries();
   
   // Handle when a country is selected from the map or dropdown
   const handleSelectCountry = (country: Country) => {
     setSelectedCountry(country);
+    // On mobile, switch to time comparison after selecting a country on the map
+    if (isMobile) {
+      setActiveSection('comparison');
+    }
   };
   
   // Handle selection of the first country in comparison
@@ -51,23 +58,55 @@ export default function Home() {
     <div className="bg-gray-50 font-sans text-gray-800 min-h-screen flex flex-col">
       <Header />
       
-      <main className="container mx-auto px-4 py-6 flex-grow">
+      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 flex-grow">
         <InfoBanner />
         
-        <MapSection 
-          countries={countries} 
-          selectedCountry={selectedCountry}
-          comparedCountry={comparedCountry}
-          onSelectCountry={handleSelectCountry}
-        />
+        {/* Mobile navigation tabs */}
+        {isMobile && (
+          <div className="mb-4 flex border-b border-gray-200">
+            <button
+              onClick={() => setActiveSection('map')}
+              className={`flex-1 py-2 text-center text-sm font-medium ${
+                activeSection === 'map' 
+                  ? 'text-primary-600 border-b-2 border-primary-500' 
+                  : 'text-gray-500'
+              }`}
+            >
+              World Map
+            </button>
+            <button
+              onClick={() => setActiveSection('comparison')}
+              className={`flex-1 py-2 text-center text-sm font-medium ${
+                activeSection === 'comparison' 
+                  ? 'text-primary-600 border-b-2 border-primary-500' 
+                  : 'text-gray-500'
+              }`}
+            >
+              Time Comparison
+            </button>
+          </div>
+        )}
         
-        <TimeComparisonSection 
-          countries={countries}
-          selectedCountry={selectedCountry}
-          comparedCountry={comparedCountry}
-          onSelectCountry1={handleSelectCountry1}
-          onSelectCountry2={handleSelectCountry2}
-        />
+        {/* Map Section - Hidden on mobile when not active */}
+        <div className={isMobile && activeSection !== 'map' ? 'hidden' : ''}>
+          <MapSection 
+            countries={countries} 
+            selectedCountry={selectedCountry}
+            comparedCountry={comparedCountry}
+            onSelectCountry={handleSelectCountry}
+          />
+        </div>
+        
+        {/* Time Comparison Section - Hidden on mobile when not active */}
+        <div className={isMobile && activeSection !== 'comparison' ? 'hidden' : ''}>
+          <TimeComparisonSection 
+            countries={countries}
+            selectedCountry={selectedCountry}
+            comparedCountry={comparedCountry}
+            onSelectCountry1={handleSelectCountry1}
+            onSelectCountry2={handleSelectCountry2}
+          />
+        </div>
         
         <UsageGuide />
       </main>
