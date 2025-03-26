@@ -20,10 +20,7 @@ export default function Home() {
   // Handle when a country is selected from the map or dropdown
   const handleSelectCountry = (country: Country) => {
     setSelectedCountry(country);
-    // On mobile, switch to time comparison after selecting a country on the map
-    if (isMobile) {
-      setActiveSection('comparison');
-    }
+    // No longer automatically switch to comparison view - let the user decide
   };
   
   // Handle selection of the first country in comparison
