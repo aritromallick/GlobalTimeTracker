@@ -59,4 +59,41 @@
     content: "Advertisement";
     @apply absolute top-0 left-0 bg-gray-700 bg-opacity-40 text-white text-opacity-70 text-[10px] px-1 py-0.5 rounded-br;
   }
+  
+  /* Blog styles */
+  .prose {
+    @apply max-w-none;
+  }
+  
+  .prose h2 {
+    @apply text-2xl font-bold mt-8 mb-4 text-gray-900;
+  }
+  
+  .prose h3 {
+    @apply text-xl font-semibold mt-6 mb-3 text-gray-800;
+  }
+  
+  .prose p {
+    @apply my-4 text-gray-700 leading-relaxed;
+  }
+  
+  .prose ul {
+    @apply my-4 list-disc pl-6;
+  }
+  
+  .prose li {
+    @apply my-1 text-gray-700;
+  }
+  
+  .prose .lead {
+    @apply text-lg text-gray-700 font-medium;
+  }
+  
+  .prose a {
+    @apply text-primary hover:underline font-medium;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-primary/30 pl-4 italic my-6;
+  }
 }

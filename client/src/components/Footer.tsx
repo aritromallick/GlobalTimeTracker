@@ -2,6 +2,7 @@ import React from "react";
 import { format } from "date-fns";
 import { useIsMobile } from "../hooks/use-mobile";
 import AdBanner from "./AdBanner";
+import { Link } from "wouter";
 
 export default function Footer() {
   // Get the current date for "last updated"
@@ -21,19 +22,39 @@ export default function Footer() {
           />
         </div>
         
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-3 md:mb-0 text-center md:text-left">
-            <h2 className="text-base sm:text-lg font-semibold">World Time Explorer</h2>
-            <p className="text-xs sm:text-sm text-gray-400">Compare local times across the globe</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div className="text-center md:text-left">
+            <h2 className="text-base sm:text-lg font-semibold mb-2">World Time Explorer</h2>
+            <p className="text-xs sm:text-sm text-gray-400 mb-3">Compare local times across the globe</p>
+            <p className="text-xs sm:text-sm text-gray-400">
+              {isMobile ? 'Updated:' : 'Timezone data last updated:'} <span>{currentDate}</span>
+            </p>
           </div>
-          <div className="text-xs sm:text-sm text-gray-400 text-center md:text-right">
-            {isMobile ? 'Updated:' : 'Timezone data last updated:'} <span>{currentDate}</span>
+          
+          <div className="text-center">
+            <h3 className="text-sm font-semibold mb-2">Resources</h3>
+            <ul className="text-xs sm:text-sm space-y-1">
+              <li><Link href="/blog"><span className="text-blue-300 hover:text-blue-200 cursor-pointer">Time Zone Blog</span></Link></li>
+              <li><Link href="/"><span className="text-blue-300 hover:text-blue-200 cursor-pointer">World Map</span></Link></li>
+              <li><Link href="/"><span className="text-blue-300 hover:text-blue-200 cursor-pointer">Time Comparison</span></Link></li>
+            </ul>
+          </div>
+          
+          <div className="text-center md:text-right">
+            <h3 className="text-sm font-semibold mb-2">Popular Articles</h3>
+            <ul className="text-xs sm:text-sm space-y-1">
+              <li><Link href="/blog/managing-teams-across-time-zones"><span className="text-blue-300 hover:text-blue-200 cursor-pointer">Managing Global Teams</span></Link></li>
+              <li><Link href="/blog/psychology-of-time-zones"><span className="text-blue-300 hover:text-blue-200 cursor-pointer">Psychology of Time Zones</span></Link></li>
+              <li><Link href="/blog/scheduling-international-meetings"><span className="text-blue-300 hover:text-blue-200 cursor-pointer">Scheduling International Meetings</span></Link></li>
+            </ul>
           </div>
         </div>
         
-        {/* Mobile back-to-top button */}
-        {isMobile && (
-          <div className="mt-3 flex justify-center">
+        <div className="border-t border-gray-700 pt-4 flex justify-between items-center text-xs text-gray-500">
+          <p>© {new Date().getFullYear()} World Time Explorer</p>
+          
+          {/* Mobile back-to-top button */}
+          {isMobile && (
             <button 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 px-3 py-1 rounded-full flex items-center"
@@ -43,8 +64,8 @@ export default function Footer() {
               </svg>
               Back to top
             </button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </footer>
   );
